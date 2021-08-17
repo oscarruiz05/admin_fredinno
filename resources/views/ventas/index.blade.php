@@ -16,42 +16,33 @@
             <h2 class="content-heading">Registrar productos</h2>
             <div class="row push">
                 <div class="col-lg-12">
-                    @foreach ($productos as $producto)
-                        
-                    @endforeach
                     <form action="#" method="get" id="agregar-producto">
                         <div class="form-group form-row">
                             <div class="col-2">
                                 <label for="">Codigo</label>
-                                <input class="form-control" name="codigo" id="codigo" type="number"  style="width: 90%;">
+                                <input class="form-control" name="codigo_producto" id="codigo_producto" type="number"  style="width: 90%;" disabled>
                             </div>
                             <div class="col-3">
                                 <label for="">Nombre Producto</label>
-                                <input type="text" class="form-control" name="nombre" id="nombre" value="helado" disabled>
-                                {{-- <select class="form-control" name="nombre-producto" id="nombre-producto" style="width: 90%;" required>
-                                    <option value="">Seleccione Producto</option>
-                                    <option value="1">Vaso medio litro</option>
-                                    <option value="2">Choco cono</option>
-                                    <option value="3">Platillo</option>
-                                </select> --}}
+                                <input type="text" class="form-control" name="nombre_producto" id="nombre_producto" value="helado" style="text-transform: capitalize;">
                             </div>
                             <div class="col-1">
                                 <label for="">Cantidad</label>
-                                <input class="form-control" id="cantidad"  type="number" value="1" style="width: 90%;">
+                                <input class="form-control" id="cantidad"  type="number" min="1" value="1" style="width: 90%;">
                             </div>
                             <div class="col-3">
                                 <label for="">precio Unt</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                    <input class="form-control" id="precio-unt"  type="text" value="3000" style="width: 60%;">
+                                    <input class="form-control" id="precio_unt"  type="text" value="3000" style="width: 60%;">
                                 </div>
-                                
+
                             </div>
                             <div class="col-3">
                                 <label for="">Precio</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                    <input class="form-control" id="precio" type="text" value="3000" style="width: 60%;" disabled>
+                                    <input class="form-control" id="precio_total" type="text" value="3000" style="width: 60%;" disabled>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +60,7 @@
                         <label for="">Cliente</label>
                         <input class="form-control" name="id_cliente" id="id_cliente"  type="hidden">
                         <select class="form-control" name="cliente" id="cliente" style="width: 90%;" required>
-                            <option value="">Seleccione Cliente</option>
+                            <option value="" selected disabled>Seleccione Cliente</option>
                             <option value="1">Vaso medio litro</option>
                             <option value="2">Choco cono</option>
                             <option value="3">Platillo</option>
@@ -108,7 +99,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    
+
                                 </tbody>
                                 <tfoot>
                                     <tr class="table-active">

@@ -41,7 +41,7 @@
                                     <td class="d-none d-sm-table-cell">
                                         {{$producto->precio}}
                                     </td>
-                                    <td><img src="{{\Storage::url($producto->imagen)}}" alt="" style="width: 50px;"></td>
+                                    <td><img src="{{asset($producto->imagen)}}" alt="" style="width: 50px;"></td>
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit">
@@ -54,12 +54,13 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            
+
                         </tbody>
                     </table>
                 </div>
             </div>
             <!-- END Hover Table -->
+
             <!-- Modal para registrar productos -->
         <div class="modal fade" id="modal-crear-producto" tabindex="-1" role="dialog" aria-labelledby="modal-default-popout" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-popout" role="document">
@@ -73,7 +74,7 @@
                             </button>
                         </div>
                         <div class="modal-body pb-1">
-                            
+
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-lg-2">
@@ -110,11 +111,11 @@
                                         <label for="imagen">Imagen:</label>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input type="file" class="form-control" name="imagen" id="imagen" accept="image/*">
+                                        <input type="file" class="form-control" name="imagen_producto" id="imagen_producto" accept="image/*">
                                     </div>
                                 </div>
                             </div>
-                        
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>

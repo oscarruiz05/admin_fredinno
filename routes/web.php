@@ -26,10 +26,12 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('welcome');
+
 // Rutas para productos
 Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
 Route::post('/productos/create', [ProductoController::class, 'store'])->name('productos.store');
 Route::post('/productos/get/product/{id}', [ProductoController::class, 'get_product'])->name('productos.get');
+
 // Rutas para ventas
 Route::get('/ventas', [VentaController::class, 'index'])->name('ventas');
 Route::get('/factura', [FacturaController::class, 'index'])->name('facturas');

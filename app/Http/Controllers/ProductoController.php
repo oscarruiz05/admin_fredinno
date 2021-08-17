@@ -32,20 +32,31 @@ class ProductoController extends Controller
         $productos = Producto::paginate(10);
         return view('productos.index', ['productos' => $productos]);
     }
-     public function store(Request $request){
-         $extencion = pathinfo($request->file('imagen')->getClientOriginalName(), PATHINFO_EXTENSION);
-         $ruta = 'imagenes/productos/';
-         $nombre = 'producto_'.$this->date->isoFormat('YMMDDHmmss').'.'.$extencion;
-         Storage::disk('public')->put($ruta.$nombre, File::get($request->file('imagen')));
-         $imagen = $ruta.$nombre;
+    public function store(Request $request){
+
+        $url_imagen = '';
+
+        if($request['imagen_producto']){
+            $imagen = $request->file('imagen_producto')->store('public/imagenes/productos');
+            $url_imagen = Storage::url($imagen);
+        }
+
         $producto = Producto::create([
             'codigo' => $request['codigo'],
             'nombre' => $request['nombre'],
             'precio' => $request['precio'],
-            'imagen' => $imagen,
+            'imagen' => $url_imagen,
             'estado' => 'disponible'
         ]);
         return redirect()->back();
+    }
+
+    public function update(Request $request){
+        $producto = Producto::find($request['id']);
+
+        //eliminar imagen antigua
+        // $delete_url = str_replace('storage', 'public', auth()->user()->avatar);
+        // Storage::delete($delete_url);
     }
 
     public function get_product(Request $request) {

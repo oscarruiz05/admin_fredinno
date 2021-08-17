@@ -24,23 +24,6 @@
                             <a class="block block-rounded block-link-pop" href="javascript:void(0)">
                                 <div class="block-content block-content-full d-flex align-items-center justify-content-between">
                                     <div>
-                                        <i class="fa fa-2x fa-arrow-up text-primary"></i>
-                                    </div>
-                                    <div class="ml-3 text-right">
-                                        <p class="font-size-h3 font-w300 mb-0">
-                                            + 30%
-                                        </p>
-                                        <p class="text-muted mb-0">
-                                            Earnings
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                </div>
-                <div class="col-md-6 col-xl-3">
-                            <a class="block block-rounded block-link-pop" href="javascript:void(0)">
-                                <div class="block-content block-content-full d-flex align-items-center justify-content-between">
-                                    <div>
                                         <i class="far fa-2x fa-user-circle text-success"></i>
                                     </div>
                                     <div class="ml-3 text-right">
@@ -48,7 +31,7 @@
                                             +78%
                                         </p>
                                         <p class="text-muted mb-0">
-                                            Users
+                                            Usuarios
                                         </p>
                                     </div>
                                 </div>
@@ -62,7 +45,7 @@
                                             960
                                         </p>
                                         <p class="text-muted mb-0">
-                                            Sales
+                                            Ventas
                                         </p>
                                     </div>
                                     <div>
@@ -72,22 +55,39 @@
                             </a>
                 </div>
                 <div class="col-md-6 col-xl-3">
-                            <a class="block block-rounded block-link-pop" href="javascript:void(0)">
-                                <div class="block-content block-content-full d-flex align-items-center justify-content-between">
-                                    <div class="mr-3">
-                                        <p class="font-size-h3 font-w300 mb-0">
-                                            359
-                                        </p>
-                                        <p class="text-muted mb-0">
-                                            Projects
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <i class="fa fa-2x fa-box text-warning"></i>
-                                    </div>
+                        <a class="block block-rounded block-link-pop" href="javascript:void(0)">
+                            <div class="block-content block-content-full d-flex align-items-center justify-content-between">
+                                <div class="mr-3">
+                                    <p class="font-size-h3 font-w300 mb-0">
+                                        359
+                                    </p>
+                                    <p class="text-muted mb-0">
+                                        Clientes
+                                    </p>
                                 </div>
-                            </a>
-                </div>          
+                                <div>
+                                    <i class="fa fa-2x fa-box text-warning"></i>
+                                </div>
+                            </div>
+                        </a>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <a class="block block-rounded block-link-pop" href="javascript:void(0)">
+                        <div class="block-content block-content-full d-flex align-items-center justify-content-between">
+                            <div>
+                                <i class="fa fa-2x fa-arrow-up text-primary"></i>
+                            </div>
+                            <div class="ml-3 text-right">
+                                <p class="font-size-h3 font-w300 mb-0">
+                                    + 30%
+                                </p>
+                                <p class="text-muted mb-0">
+                                    Vendedores
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </main>

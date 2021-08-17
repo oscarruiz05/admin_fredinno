@@ -33,7 +33,7 @@
                 </a>
 
                 <a class="nav-main-link {{ request()->routeIs('ventas') ? ' active' : '' }}" href="{{route('ventas')}}">
-                    <li class="nav-main-link-icon fa fa-shopping-cart "></li><span class="nav-main-link-name"> Ventas</span>
+                    <li class="nav-main-link-icon fa fa-shopping-cart "></li><span class="nav-main-link-name"> Crear Venta</span>
                 </a>
 
                 <a class="nav-main-link {{ request()->routeIs('facturas*') ? ' active' : '' }}" href="{{route('facturas')}}">
@@ -42,12 +42,15 @@
 
                 <li class="nav-main-heading">Vendedores</li>
                 <a class="nav-main-link {{ request()->routeIs('vendedores*') ? ' active' : '' }}" href="{{route('vendedores')}}">
-                    <li class="nav-main-link-icon fa fa-user-tag "></li><span class="nav-main-link-name"> Vendedores</span>
+                    <li class="nav-main-link-icon fa fa-users "></li><span class="nav-main-link-name"> Vendedores</span>
+                </a>
+                <a class="nav-main-link {{ request()->routeIs('vendedores*') ? ' active' : '' }}" href="{{route('vendedores')}}">
+                    <li class="nav-main-link-icon fa fa-user-tag "></li><span class="nav-main-link-name"> Ventas Diarias</span>
                 </a>
 
                 <li class="nav-main-heading">Clientes</li>
                 <a class="nav-main-link" href="">
-                    <li class="nav-main-link-icon fa fa-user-tag "></li><span class="nav-main-link-name"> Clientes</span>
+                    <li class="nav-main-link-icon fa fa-users "></li><span class="nav-main-link-name"> Clientes</span>
                 </a>
 
                 <li class="nav-main-heading">Administrador</li>
@@ -59,6 +62,6 @@
     <!-- END Side Navigation -->
 </div>
 <!-- END Sidebar Scrolling -->
-    
+
 </nav>
 <!-- END Sidebar -->

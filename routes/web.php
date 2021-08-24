@@ -5,6 +5,7 @@ use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\VendedoresController;
 use App\Http\Controllers\VentaController;
+use App\Models\Producto;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,12 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('we
 // Rutas para productos
 Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
 Route::post('/productos/create', [ProductoController::class, 'store'])->name('productos.store');
+Route::get('/productos/show/{id}', [ProductoController::class, 'show'])->name('productos.show');
+Route::post('/porductos/update', [ProductoController::class, 'update'])->name('productos.update');
+Route::post('/productos/delete/{id}', [ProductoController::class, 'delete']);
+
+
+
 Route::post('/productos/get/product/{id}', [ProductoController::class, 'get_product'])->name('productos.get');
 
 // Rutas para ventas

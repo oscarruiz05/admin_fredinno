@@ -16,6 +16,8 @@
     <!-- Fonts and Dashmix framework -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" id="css-main" href="{{asset('assets/css/dashmix.min.css')}}">
+    <!-- plugins -->
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.css')}}">
 
     <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
 
@@ -23,7 +25,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
-    
+
     <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed main-content-narrow">
         @include('layouts.src.aside')
         @include('layouts.src.menu')
@@ -40,6 +42,17 @@
 
     <!-- Page JS Code -->
     <script src="{{asset('assets/js/pages/be_pages_dashboard.min.js')}}"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script> --}}
+    <script src="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+
+    <!-- configuracion para csrf token -->
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    @yield('myScripts')
 </body>
 </html>

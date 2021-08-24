@@ -39,15 +39,15 @@
                                         {{$producto->nombre}}
                                     </td>
                                     <td class="d-none d-sm-table-cell">
-                                        {{$producto->precio}}
+                                        {{number_format((int) $producto->precio)}}
                                     </td>
                                     <td><img src="{{asset($producto->imagen)}}" alt="" style="width: 50px;"></td>
                                     <td class="text-center">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit">
+                                            <button type="button" class="btn btn-sm btn-primary" id="edit_producto" onclick="editarProducto({{$producto->id}},this)">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </button>
-                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Delete">
+                                            <button type="button" class="btn btn-sm btn-primary" onclick="elimnarProducto({{$producto->id}},this)">
                                                 <i class="fa fa-times"></i>
                                             </button>
                                         </div>
@@ -62,70 +62,141 @@
             <!-- END Hover Table -->
 
             <!-- Modal para registrar productos -->
-        <div class="modal fade" id="modal-crear-producto" tabindex="-1" role="dialog" aria-labelledby="modal-default-popout" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-popout" role="document">
-                <div class="modal-content">
-                    <form action="{{route('productos.store')}}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="modal-header">
-                            <h5 class="modal-title">Crear Producto</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body pb-1">
+            <div class="modal fade" id="modal-crear-producto" tabindex="-1" role="dialog" aria-labelledby="modal-default-popout" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-popout" role="document">
+                    <div class="modal-content">
+                        <form action="{{route('productos.store')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="modal-header">
+                                <h5 class="modal-title">Crear Producto</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body pb-1">
 
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-lg-2">
-                                        <label for="codigo">Codigo:</label>
-                                    </div>
-                                    <div class="col-lg-10">
-                                        <input type="number" class="form-control" name="codigo" id="codigo" placeholder="Codigo Producto.." autocomplete="off" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-lg-2">
-                                        <label for="nombre">Nombre:</label>
-                                    </div>
-                                    <div class="col-lg-10">
-                                        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Producto.." autocomplete="off" required>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label for="codigo">Codigo:</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <input type="number" class="form-control" name="codigo" id="codigo" placeholder="Codigo Producto.." autocomplete="off" required>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-lg-2">
-                                        <label for="precio">Precio:</label>
-                                    </div>
-                                    <div class="col-lg-10">
-                                        <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio Producto.." autocomplete="off" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-lg-2">
-                                        <label for="imagen">Imagen:</label>
-                                    </div>
-                                    <div class="col-lg-10">
-                                        <input type="file" class="form-control" name="imagen_producto" id="imagen_producto" accept="image/*">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label for="nombre">Nombre:</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Producto.." autocomplete="off" required>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label for="precio">Precio:</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio Producto.." autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label for="imagen">Imagen:</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <input type="file" class="form-control" name="imagen_producto" id="imagen_producto" accept="image/*">
+                                        </div>
+                                    </div>
+                                </div>
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-sm btn-primary">Crear</button>
-                        </div>
-                    </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-sm btn-primary">Crear</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- END Modal para registrar productos -->
+            <!-- END Modal para registrar productos -->
+
+            <!-- Modal para editar productos -->
+            <div class="modal fade" id="modal-update-producto" tabindex="-1" role="dialog" aria-labelledby="modal-default-popout" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-popout" role="document">
+                    <div class="modal-content" id="content_modal">
+                        <form action="{{route('productos.update')}}" method="POST" enctype="multipart/form-data" id="update_product">
+                            @csrf
+                            <div class="modal-header">
+                                <h5 class="modal-title">Editar Producto</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body pb-1">
+                                <input type="hidden" name="id_producto" id="id_producto">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label for="codigo">Codigo:</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <input type="number" class="form-control" name="codigo" id="codigo_edi" placeholder="Codigo Producto.." autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label for="nombre">Nombre:</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" name="nombre" id="nombre_edi" placeholder="Nombre Producto.." autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label for="precio">Precio:</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control" name="precio" id="precio_edi" placeholder="Precio Producto.." autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label for="imagen">Imagen:</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <input type="file" class="form-control" name="imagen_producto" id="imagen_producto_edi" accept="image/*">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-sm btn-primary">Actulizar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- END Modal para editar productos -->
+
         </div>
     </main>
+@endsection
+
+@section('myScripts')
+    <script src="{{asset('assets/js/peticiones/productos.js')}}"></script>
 @endsection

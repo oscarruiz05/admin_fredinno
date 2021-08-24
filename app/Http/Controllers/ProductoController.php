@@ -51,15 +51,35 @@ class ProductoController extends Controller
         return redirect()->back();
     }
 
+    public function show($id){
+        $producto = Producto::find($id);
+        return $producto;
+    }
+
     public function update(Request $request){
-        $producto = Producto::find($request['id']);
+        $producto = Producto::find($request['id_producto']);
+        $url_imagen = $producto->imagen;
 
-        //eliminar imagen antigua
-        // $delete_url = str_replace('storage', 'public', auth()->user()->avatar);
-        // Storage::delete($delete_url);
+        if($request['imagen_producto']){
+            $url_delete = str_replace('storage', 'public', $producto->imagen);
+            Storage::delete($url_delete);
+            $imagen = $request->file('imagen_producto')->store('public/imagenes/productos');
+            $url_imagen = Storage::url($imagen);
+        }
+
+        $producto->update([
+            'codigo' => $request['codigo'],
+            'nombre' => $request['nombre'],
+            'precio' => $request['precio'],
+            'imagen' => $url_imagen
+        ]);
+
+        return redirect()->back();
     }
 
-    public function get_product(Request $request) {
-        return Producto::find($request['id']);
+    public function delete($id){
+        $producto = Producto::find($id);
+        $producto->delete();
     }
+
 }
